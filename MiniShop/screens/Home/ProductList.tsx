@@ -1,4 +1,4 @@
-import { View, Text, Button, ActivityIndicator, FlatList, Image } from 'react-native';
+import { View, Text, Button, ActivityIndicator, FlatList, Image, TouchableOpacity } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { getProducts, Product } from '../../services/products';
 import { useSelector } from 'react-redux';
@@ -21,13 +21,13 @@ export default function ProductList({ navigation }: Props) {
 
   if (isLoading) return <ActivityIndicator size="large" style={{ flex: 1 }} />;
   if (isError) return (
-    <View style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:bgColor }}>
-      <Text style={{ color:textColor }}>Error fetching products</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: bgColor }}>
+      <Text style={{ color: textColor }}>Error fetching products</Text>
     </View>
   );
   if (!data || data.length === 0) return (
-    <View style={{ flex:1, justifyContent:'center', alignItems:'center', backgroundColor:bgColor }}>
-      <Text style={{ color:textColor }}>No products found</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: bgColor }}>
+      <Text style={{ color: textColor }}>No products found</Text>
     </View>
   );
 
@@ -35,34 +35,68 @@ export default function ProductList({ navigation }: Props) {
     <FlatList
       data={data}
       keyExtractor={(item) => item.id.toString()}
-      contentContainerStyle={{ backgroundColor: bgColor, paddingVertical: 8 }}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        backgroundColor: bgColor,
+        paddingVertical: 12,
+        paddingHorizontal: 12,
+        gap: 12,
+      }}
       renderItem={({ item }) => (
         <View style={{
-          marginHorizontal: 16,
-          marginVertical: 8,
-          backgroundColor: isLight ? '#f9f9f9' : '#333',
+          width: '100%',
+          backgroundColor: isLight ? '#f9f9f9' : '#2e2e2e',
           borderRadius: 12,
           overflow: 'hidden',
           shadowColor: '#000',
-          shadowOpacity: 0.2,
+          shadowOpacity: isLight ? 0.15 : 0.4,
+          shadowRadius: 6,
           shadowOffset: { width: 0, height: 2 },
-          shadowRadius: 4,
           elevation: 3,
         }}>
           {item.images[0] && (
-            <Image source={{ uri: item.images[0] }} style={{ width:'100%', height:150 }} resizeMode="cover" />
-          )}
-          <View style={{ padding: 12 }}>
-            <Text style={{ color:textColor, fontWeight:'bold', fontSize:16 }}>{item.title}</Text>
-            <Text style={{ color:textColor, marginVertical:4 }}>${item.price}</Text>
-            <Button
-              title="View Details"
-              color={isLight ? undefined : '#bbb'}
-              onPress={() => navigation.navigate('ProductDetail', { id: item.id })}
+            <Image
+              source={{ uri: item.images[0] }}
+              style={{
+                width: '100%',
+                aspectRatio: 1,
+                backgroundColor: '#ddd',
+              }}
+              resizeMode="cover"
             />
+          )}
+
+          <View style={{ padding: 12 }}>
+            <Text style={{ color: textColor, fontWeight: '600', fontSize: 16 }}>
+              {item.title}
+            </Text>
+
+            <Text style={{
+              color: textColor,
+              fontSize: 15,
+              fontWeight: '600',
+              marginVertical: 6,
+            }}>
+              € {item.price.toFixed(2)}
+            </Text>
+
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ProductDetail', { id: item.id })}
+              style={{
+                marginTop: 8,
+                backgroundColor: isLight ? '#007AFF' : '#0A84FF',
+                paddingVertical: 8,
+                borderRadius: 8,
+              }}
+            >
+              <Text style={{ textAlign: 'center', color: '#fff', fontWeight: '600' }}>
+                View Details
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       )}
     />
+
   );
 }

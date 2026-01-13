@@ -47,7 +47,7 @@ export default function RootNavigator() {
           tabBarInactiveTintColor: isLight ? '#555' : '#aaa',
         }}
       >
-        <Tab.Screen name="HomeTab" component={HomeStack} options={{ title: 'Home' }} />
+        <Tab.Screen name="HomeTab" component={HomeStack} options={{ headerShown: false }} />
         <Tab.Screen name="Cart" component={Cart} />
         <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>

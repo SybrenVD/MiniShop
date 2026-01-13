@@ -32,10 +32,6 @@ export default function Profile() {
             contentContainerStyle={{ padding: 16, backgroundColor: bgColor, paddingBottom: 40 }}
             ListHeaderComponent={() => (
                 <View style={{ marginBottom: 24 }}>
-                    {/* Profile Info */}
-                    <Text style={{ color: textColor, fontSize: 22, fontWeight: 'bold', marginBottom: 12 }}>
-                        Profile
-                    </Text>
                     <Text style={{ color: textColor, marginBottom: 4 }}>Total items: {totalItems}</Text>
                     <Text style={{ color: textColor, marginBottom: 12 }}>Subtotal: € {subtotal.toFixed(2)}</Text>
 

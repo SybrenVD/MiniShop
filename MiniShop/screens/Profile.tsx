@@ -25,13 +25,27 @@ export default function Profile() {
     const favorites = useSelector((state: RootState) => state.favorites.items);
     const dispatch = useDispatch();
 
+    // Hard-coded profile info
+    const profilePhoto = 'https://i.pravatar.cc/150?img=12';
+    const profileName = 'John Doe';
+    const profileEmail = 'johndoe@example.com';
+
     return (
         <FlatList
             data={favorites}
             keyExtractor={(item) => item.id.toString()}
             contentContainerStyle={{ padding: 16, backgroundColor: bgColor, paddingBottom: 40 }}
             ListHeaderComponent={() => (
-                <View style={{ marginBottom: 24 }}>
+                <View style={{ marginBottom: 24, alignItems: 'center' }}>
+                    {/* Profile Info */}
+                    <Image
+                        source={{ uri: profilePhoto }}
+                        style={{ width: 100, height: 100, borderRadius: 50, marginBottom: 12 }}
+                    />
+                    <Text style={{ color: textColor, fontSize: 20, fontWeight: 'bold' }}>{profileName}</Text>
+                    <Text style={{ color: textColor, marginBottom: 16 }}>{profileEmail}</Text>
+
+                    {/* Cart summary */}
                     <Text style={{ color: textColor, marginBottom: 4 }}>Total items: {totalItems}</Text>
                     <Text style={{ color: textColor, marginBottom: 12 }}>Subtotal: € {subtotal.toFixed(2)}</Text>
 
@@ -40,7 +54,8 @@ export default function Profile() {
                             backgroundColor: buttonColor,
                             paddingVertical: 10,
                             borderRadius: 10,
-                            marginBottom: 16
+                            marginBottom: 16,
+                            width: 200
                         }}
                         onPress={() => navigation.navigate('Cart')}
                     >
@@ -52,7 +67,8 @@ export default function Profile() {
                             backgroundColor: isLight ? '#28A745' : '#2ECC71',
                             paddingVertical: 10,
                             borderRadius: 10,
-                            marginBottom: 16
+                            marginBottom: 16,
+                            width: 200
                         }}
                         onPress={() => dispatch(toggleTheme())}
                     >
@@ -64,6 +80,7 @@ export default function Profile() {
                     </Text>
                 </View>
             )}
+
             renderItem={({ item }) => (
                 <View
                     style={{
@@ -91,7 +108,7 @@ export default function Profile() {
                             onPress={() =>
                                 navigation.navigate('HomeTab', {
                                     screen: 'ProductDetail',
-                                    params: { id: item.id, from: 'Profile'},
+                                    params: { id: item.id, from: 'Profile' },
                                 })
                             }
                             style={{
@@ -105,7 +122,6 @@ export default function Profile() {
                         >
                             <Text style={{ color: '#fff', fontWeight: '600' }}>View Details</Text>
                         </TouchableOpacity>
-
                     </View>
 
                     <TouchableOpacity onPress={() => dispatch(toggleFavorite(item))} style={{ marginLeft: 12 }}>

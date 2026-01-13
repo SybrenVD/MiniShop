@@ -35,7 +35,6 @@ export default function Profile() {
                     <Text style={{ color: textColor, marginBottom: 4 }}>Total items: {totalItems}</Text>
                     <Text style={{ color: textColor, marginBottom: 12 }}>Subtotal: € {subtotal.toFixed(2)}</Text>
 
-                    {/* Buttons */}
                     <TouchableOpacity
                         style={{
                             backgroundColor: buttonColor,
@@ -88,7 +87,6 @@ export default function Profile() {
                     <View style={{ flex: 1 }}>
                         <Text style={{ color: textColor, fontWeight: '600' }}>{item.title}</Text>
                         <Text style={{ color: textColor, marginTop: 4 }}>€ {item.price.toFixed(2)}</Text>
-                        {/* View Details button */}
                         <TouchableOpacity
                             onPress={() =>
                                 navigation.navigate('HomeTab', {
@@ -110,7 +108,6 @@ export default function Profile() {
 
                     </View>
 
-                    {/* Favorite heart */}
                     <TouchableOpacity onPress={() => dispatch(toggleFavorite(item))} style={{ marginLeft: 12 }}>
                         <Text style={{ fontSize: 24, color: '#FF3B30' }}>❤️</Text>
                     </TouchableOpacity>

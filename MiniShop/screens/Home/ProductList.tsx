@@ -48,7 +48,6 @@ export default function ProductList() {
             alignItems: 'center',
             padding: 8
           }}>
-            {/* Product Image */}
             {item.images[0] && (
               <Image
                 source={{ uri: item.images[0] }}
@@ -61,9 +60,7 @@ export default function ProductList() {
               <Text style={{ color: textColor, fontWeight: '600', fontSize: 16 }}>{item.title}</Text>
               <Text style={{ color: textColor, marginVertical: 4 }}>€ {item.price.toFixed(2)}</Text>
 
-              {/* Buttons Row */}
               <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
-                {/* View Details Button */}
                 <TouchableOpacity
                   onPress={() => navigation.navigate('ProductDetail', { id: item.id })}
                   style={{
@@ -76,10 +73,8 @@ export default function ProductList() {
                   <Text style={{ color: '#fff', fontWeight: '600' }}>View Details</Text>
                 </TouchableOpacity>
 
-                {/* Spacer */}
                 <View style={{ flex: 1 }} />
 
-                {/* Favorite Heart aligned right */}
                 <TouchableOpacity
                   onPress={() => dispatch(toggleFavorite({
                     id: item.id,

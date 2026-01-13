@@ -47,7 +47,6 @@ export default function RootNavigator() {
           tabBarActiveTintColor: navTheme.colors.primary,
           tabBarInactiveTintColor: isLight ? '#555' : '#aaa',
           tabBarIcon: ({ color, size }) => {
-            // Add icons for each tab
             if (route.name === 'HomeTab') {
               return <Ionicons name="home-outline" size={size} color={color} />;
             } else if (route.name === 'Cart') {

@@ -42,9 +42,7 @@ export default function ProductDetail({ route }: any) {
       <Text style={{ color: textColor, fontSize: 20, marginBottom: 12 }}>€ {data.price.toFixed(2)}</Text>
       <Text style={{ color: textColor, marginBottom: 20 }}>{data.description}</Text>
 
-      {/* Buttons Row */}
       <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
-        {/* Add to Cart Button */}
         <View style={{ flex: 1 }}>
           <Button
             title="Add to Cart"
@@ -60,10 +58,8 @@ export default function ProductDetail({ route }: any) {
           />
         </View>
 
-        {/* Spacer */}
         <View style={{ width: 16 }} />
 
-        {/* Favorite Heart */}
         <TouchableOpacity onPress={() =>
           dispatch(toggleFavorite({
             id: data.id,

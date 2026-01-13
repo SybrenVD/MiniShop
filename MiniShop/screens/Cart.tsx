@@ -45,7 +45,6 @@ export default function Cart() {
           borderColor,
           alignItems: 'center'
         }}>
-          {/* Afbeelding */}
           {item.image && (
             <Image
               source={{ uri: item.image }}
@@ -59,7 +58,6 @@ export default function Cart() {
             />
           )}
 
-          {/* Product info + quantity */}
           <View style={{ flex: 1 }}>
             <Text style={{ color: textColor, fontWeight: '600', fontSize: 16 }}>
               {item.title}
@@ -79,7 +77,6 @@ export default function Cart() {
             </View>
           </View>
 
-          {/* Remove knop */}
           <TouchableOpacity onPress={() => dispatch(removeFromCart(item.id))}>
             <Text style={{ fontSize: 20, color: isLight ? '#d00' : '#ff5555' }}>🗑</Text>
           </TouchableOpacity>
